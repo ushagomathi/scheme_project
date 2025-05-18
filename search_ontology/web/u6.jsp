@@ -1,0 +1,195 @@
+<%-- 
+    Document   : index
+   
+--%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Calendar"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <!-- u6 -->
+<head>
+<title>Ontology Search | General</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="script/style.css" rel="stylesheet" type="text/css" />
+<!--[if lt IE 7]><link href="script/ie.css" rel="stylesheet" type="text/css" /><![endif]-->
+<!--[if IE 7]><link href="script/ie7.css" rel="stylesheet" type="text/css" /><![endif]-->
+<style type="text/css">
+<!--
+.style48 {color: #003399}
+-->
+</style><link href="screen.css" rel="stylesheet" type="text/css" media="screen" /><script type="text/javascript" src="js/datetimepicker_css.js"></script>
+<script type="text/javascript" src="js/general.js"></script><SCRIPT LANGUAGE="JavaScript">  
+
+<!-- This script and many more are available free online at -->
+<!-- The JavaScript Source!! http://javascript.internet.com -->
+
+<!-- Begin
+function checkEmail(myForm) {
+if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.a11.value)){
+return (true)
+}
+alert("Invalid E-mail Address! Please re-enter.")
+return (false)
+}
+//  End -->
+</script>
+<style type="text/css">
+<!--
+.style50 {font-size: 14px; font-weight: bold; }
+.style51 {font-size: 14px; font-weight: bold; color: #FFFFFF; }
+-->
+</style>
+</head>
+<body id="inner">
+<div id="wrapper">
+  <div id="header" style="background-color: #1f3b6e; "> <a href="#" style="background-color: #1f3b6e; color: white; font-size: 40px; font-weight: bold; " class="replace">Scheme Portal</a>
+    <div id="navigation" style="width:900px;" align="center">
+      <ul >
+        <li><a href="u1.jsp">Home</a></li>
+        <li><a href="u2.jsp">Search</a></li>
+		 
+          <li><a href="i4.jsp">Log-out</a></li>
+          
+      </ul>
+    </div>
+    <!--navigation ends-->
+   
+    <!--connect ends-->
+  </div>
+  <!--header ends-->
+  <div id="inner_content">
+    <div id="inner_main_column" style="width:960px; " >
+      <h1 align="center"style="font-family: bold"> SEARCH YOUR DOMAIN</h1>
+        <table width="956" height="470" border="0" style="margin-top: 400px" >
+        <tr>
+          <td height="466" ><FORM action="p1" method="post" >
+		<table  border="0" align="center"  style=" height: 200px; ">
+		  
+
+          <tr>
+            <td width="939" height="300"  >
+			<table width="757" border="0" align="center" style="margin-top: -400px;margin-left: 210px">
+  <tr style="margin-top: 200px">
+    <td width="465"><label>
+    <input type="text" name="a2" placeholder="Type scheme"  style="width:460px; height:30px;"/>
+    </label></td>
+    <td width="10">&nbsp;</td>
+    <td width="268"><label>
+      <input type="submit" name="v10" value="search" style="width:150px; height:34px; cursor: pointer;background:#4CAF50; color: white; border: 0; font-size: large;" />
+    </label></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<%if(request.getParameter("v10")!=null){%>
+<table width="944" border="0" >
+  <tr>
+    <td width="938"><table width="939" border="1" bordercolor="#006699" style="margin-top: 50px">
+      <tr>
+      
+        <td width="209" height="31" bgcolor="#0066FF"><div align="center" class="style50">CID</div></td>
+        <td width="229" bgcolor="#0066FF"><div align="center" class="style50">Scheme Name</div></td>
+        <td width="277" bgcolor="#0066FF"><div align="center" class="style50">Gender</div></td>
+    
+           <td width="206" bgcolor="#0066FF"><div align="center" class="style50">Application Form</div></td>
+      </tr>
+    <% int index=0;
+	try
+	{
+	String b1=request.getParameter("a2");
+	   
+            String a11=null;
+             	   HttpSession so = request.getSession(true);
+ System.out.println(a11);
+
+		int flag=0;
+		String url="jdbc:mysql://localhost:3306/purchases1";
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection con=DriverManager.getConnection(url,"root","root");
+		Statement st=con.createStatement();
+                Statement st1=con.createStatement();
+                Statement st2=con.createStatement();
+                Statement st3=con.createStatement();
+                
+		ResultSet rs = st.executeQuery("select * from sdetail  ");
+    while(rs.next())
+		{	
+       		
+	 %>
+      <tr>
+      
+        <td width="209"><div align="center"><%=rs.getString(1)%></div></td>
+        <td width="229"><div align="center"><%=rs.getString(2)%></div></td>
+        <td width="277"><div align="center"><%=rs.getString(3)%></div></td>
+   
+       
+        <td width="206"><div align="center">
+          <BUTTON name="f4" value="<%=rs.getString(1)%>" type="submit" class="style51" style="padding: 10px; background-color:#4CAF50;color:white; border: 0px; border-radius:8px; margin-bottom: 10px; margin-top: 10px" >CLICK TO APPLY</BUTTON>
+        </div></td>
+      </tr><%
+ 
+                                     } 								
+													
+													}
+	catch (Exception e) {
+		out.println(e);
+	}
+	%>
+       
+    </table></td>
+  </tr>
+</table>
+<%}%>
+		 
+		 </td>
+          </tr>
+        
+      </table>
+
+		      
+</FORM></td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+
+    </div>
+    <!--main column ends-->
+    <!--inner right column ends-->
+    <div class="clear"></div>
+  </div>
+  <!--content ends-->
+  <div class="footerclear"></div>
+</div>
+<!--wrapper ends-->
+<div id="footer_container">
+  <div id="footer">
+     <ul >
+        <li><a href="index.jsp">Home</a></li>
+      <li><a href="i1.jsp">About</a></li>
+      
+        <li><a href="i3.jsp">Create Account</a></li>
+        <li><a href="i4.jsp">Login</a></li>
+             <li><a href="i5.jsp">Contact</a></li>
+      </ul>
+  </div>
+  <!--footer ends-->
+</div>
+<!--footer ends-->
+<div align=center></div>
+</body>
+</html>
